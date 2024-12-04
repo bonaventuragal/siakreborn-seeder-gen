@@ -64,7 +64,7 @@ const processSheet = async (sheetName: string) => {
     converter.addSql(fileName, sheetName, types, headers, values)
 
     if (sheetName.endsWith("_comp")) {
-      const impl = generateImpl(sheetName, headers, values)
+      const impl = generateImpl(sheetName, headers, types, values)
       converter.addSql(fileName, impl.tableName, impl.types, impl.headers, impl.values)
     }
   }

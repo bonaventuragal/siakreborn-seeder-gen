@@ -19,14 +19,14 @@ export const generateAuthComp = (sheetName: string, values: any[][]) => {
   }
 }
 
-export const generateImpl = (sheetName: string, headers: any[], values: any[][]) => {
-  const objectNameIdx = headers.findIndex(v => v === "objectname")
+export const generateImpl = (sheetName: string, headers: any[], types: any[], values: any[][]) => {
+  const objectNameIdx = headers.findIndex(v => v === "modulesequence")
 
   return {
     tableName: sheetName.replace("_comp", "_impl"),
-    headers: ["id"],
-    types: ["string"],
-    values: values.filter(v => v[objectNameIdx].includes(".core.")).map(v => [v[0]])
+    headers: [headers[0]],
+    types: [types[0]],
+    values: values.filter(v => v[objectNameIdx] !== "null").map(v => [v[0]])
   }
 }
 
